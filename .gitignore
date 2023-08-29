@@ -1,1 +1,5 @@
 .env
+
+django/logs/
+django/media/
+django/static/

@@ -3,7 +3,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 
 from .models import Message, Room
-from .paginations import MessagePagination
+from .paginations import MessagePagination, RoomPagination
 from .serializers import (
     MessageCreateSerializer,
     RoomCreateSerializer,
@@ -13,8 +13,9 @@ from .serializers import (
 )
 
 
-class RoomCreateView(ListCreateAPIView):
+class RoomListCreateView(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
+    pagination_class = RoomPagination
 
     def get_queryset(self):
         user = self.request.user

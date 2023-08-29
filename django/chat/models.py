@@ -26,13 +26,13 @@ class Room(models.Model):
     def get_members(self):
         return self.member_set.all()
 
-    def get_last_message_time(self):
+    def get_last_message(self):
         messages = self.message_set.order_by("-created_at")
         try:
             message = messages[0]
         except IndexError:
             return None
-        return message.created_at
+        return message
 
     class Meta:
         verbose_name = _("Room")

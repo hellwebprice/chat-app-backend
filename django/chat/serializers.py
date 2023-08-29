@@ -36,11 +36,11 @@ class MessageCreateSerializer(serializers.ModelSerializer):
 
 
 class RoomListSerializer(serializers.ModelSerializer):
-    last_message_time = serializers.DateTimeField(source="get_last_message_time")
+    last_message = MessageSerializer(source="get_last_message")
 
     class Meta:
         model = Room
-        fields = ["id", "title", "last_message_time"]
+        fields = ["id", "title", "last_message"]
 
 
 class RoomCreateSerializer(serializers.ModelSerializer):

@@ -23,6 +23,7 @@ websockets = "^11.0.3"
 pip = "^23.2.1"
 django-admin-inline-paginator = "^0.4.0"
 pillow = "^10.0.0"
+django-cors-headers = "^4.2.0"
 
 
 [tool.poetry.group.dev.dependencies]

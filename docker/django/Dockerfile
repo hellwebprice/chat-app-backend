@@ -42,7 +42,7 @@ RUN poetry install
 
 WORKDIR /var/www/django
 
-CMD python manage.py collectstatic \
+CMD python manage.py collectstatic --noinput \
     && python manage.py migrate \
     && uvicorn --reload --host 0.0.0.0 config.asgi:application
 
@@ -54,6 +54,6 @@ COPY ./django /var/www/django
 
 WORKDIR /var/www/django
 
-CMD python manage.py collectstatic \
+CMD python manage.py collectstatic --noinput \
     && python manage.py migrate \
     && gunicorn --reload --bind 0.0.0.0 -k uvicorn.workers.UvicornWorker config.asgi:application

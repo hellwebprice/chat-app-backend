@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django_admin_inline_paginator",
     "corsheaders",
     "rest_framework",
+    "rest_framework_simplejwt.token_blacklist",
     "django_filters",
     "djoser",
     "drf_yasg",
@@ -155,6 +156,8 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("Bearer",),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
 }
 
 SWAGGER_SETTINGS = {"USE_SESSION_AUTH": False}

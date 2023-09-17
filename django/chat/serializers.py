@@ -1,13 +1,14 @@
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
+from djoser.serializers import UserSerializer
 from rest_framework import serializers
 
 from .fields import PresetField, RoomMembersToAddRelatedField, UserRoomRelatedField
 from .models import Message, Room
 
 
-class MessageSerializer(serializers.ModelSerializer):
-    author = serializers.StringRelatedField()
+class MessageListSerializer(serializers.ModelSerializer):
+    author = UserSerializer()
     is_owner = serializers.SerializerMethodField(
         "view_is_owner", label=_("Is user message owner")
     )
@@ -43,7 +44,7 @@ class MessageCreateSerializer(serializers.ModelSerializer):
 
 
 class RoomListSerializer(serializers.ModelSerializer):
-    last_message = MessageSerializer(source="get_last_message")
+    last_message = MessageListSerializer(source="get_last_message")
 
     class Meta:
         model = Room

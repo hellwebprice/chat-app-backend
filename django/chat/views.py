@@ -6,6 +6,7 @@ from .models import Message, Room
 from .paginations import MessagePagination, RoomPagination
 from .serializers import (
     MessageCreateSerializer,
+    MessageListSerializer,
     RoomCreateSerializer,
     RoomListSerializer,
     RoomRetrieveSerializer,
@@ -41,11 +42,15 @@ class RoomRetrieveView(RetrieveUpdateAPIView):
 
 
 class MessageListCreateView(ListCreateAPIView):
-    serializer_class = MessageCreateSerializer
     permission_classes = [IsAuthenticated]
     pagination_class = MessagePagination
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["room"]
+
+    def get_serializer_class(self):
+        if self.request.method == "GET":
+            return MessageListSerializer
+        return MessageCreateSerializer
 
     def get_queryset(self):
         user = self.request.user

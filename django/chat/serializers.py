@@ -25,13 +25,6 @@ class MessageListSerializer(serializers.ModelSerializer):
 class MessageCreateSerializer(serializers.ModelSerializer):
     author = PresetField(default=serializers.CurrentUserDefault())
     room = UserRoomRelatedField(write_only=True)
-    is_owner = serializers.SerializerMethodField(
-        "view_is_owner", label=_("Is user message owner")
-    )
-
-    def view_is_owner(self, instance):
-        user = self.context["request"].user
-        return instance.is_owner(user)
 
     def create(self, validated_data):
         instance = super().create(validated_data)

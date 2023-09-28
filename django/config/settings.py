@@ -155,6 +155,14 @@ REST_FRAMEWORK = {
     ),
 }
 
+DJOSER = {
+    "PERMISSIONS": {
+        "user": ["rest_framework.permissions.IsAuthenticated"],
+        "user_list": ["rest_framework.permissions.AllowAny"],
+    },
+    "HIDE_USERS": False,
+}
+
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
     "AUTH_HEADER_TYPES": ("Bearer",),

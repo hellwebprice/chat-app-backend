@@ -10,12 +10,6 @@ class UserListSerializer(serializers.ModelSerializer):
         fields = ["id", "username", "avatar"]
 
 
-class FriendListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = get_user_model()
-        fields = ["id", "username", "avatar"]
-
-
 class FriendUpdateSerializer(serializers.ModelSerializer):
     friend_to_add = FriendToAddRelatedField(
         queryset=get_user_model().objects.all(),
@@ -30,7 +24,7 @@ class FriendUpdateSerializer(serializers.ModelSerializer):
     )
 
     def update(self, instance, validated_data):
-        friend_set = set(instance.get_friend_requests())
+        friend_set = set(instance.get_friend_relations())
         friend_to_add = set(validated_data.pop("friend_to_add"))
         friend_to_remove = set(validated_data.pop("friend_to_remove"))
 

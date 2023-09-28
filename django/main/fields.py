@@ -11,4 +11,4 @@ class FriendToAddRelatedField(PrimaryKeyRelatedField):
 class FriendToRemoveRelatedField(PrimaryKeyRelatedField):
     def get_queryset(self):
         user = self.context["request"].user
-        return user.get_friend_requests()
+        return user.get_friend_relations()

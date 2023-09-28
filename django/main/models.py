@@ -29,8 +29,13 @@ class User(AbstractUser):
     def get_friends(self):
         return self.friend_set.filter(friend_set=self)
 
-    def get_friend_requests(self):
+    def get_friend_relations(self):
         return self.friend_set.all()
+
+    def get_friend_requests(self):
+        return User.objects.filter(friend_set=self).exclude(
+            pk__in=self.friend_set.all()
+        )
 
     def __str__(self):
         return self.username

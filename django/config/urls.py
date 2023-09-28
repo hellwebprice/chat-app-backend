@@ -34,6 +34,8 @@ schema_view = get_schema_view(
 )
 
 api_urlpatterns = [
+    # Authentication
+    path("auth/", include("main.urls")),
     # Authorization
     path("auth/", include("djoser.urls")),
     path("auth/", include("djoser.urls.jwt")),
@@ -51,8 +53,6 @@ api_urlpatterns = [
     path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
     # Chat
     path("chat/", include("chat.urls")),
-    # Main
-    path("main/", include("main.urls")),
 ]
 
 urlpatterns = [

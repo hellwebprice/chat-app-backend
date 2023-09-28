@@ -32,7 +32,7 @@ class MessageCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Message
-        fields = ["author", "room", "text", "created_at", "is_owner"]
+        fields = ["author", "room", "text", "created_at"]
         read_only_fields = ["created_at"]
 
 

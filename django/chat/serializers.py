@@ -96,9 +96,7 @@ class RoomUpdateSerializer(RoomCreateSerializer):
 
 
 class RoomRetrieveSerializer(serializers.ModelSerializer):
-    member_set = serializers.StringRelatedField(
-        many=True, label=_("List of room member usernames")
-    )
+    member_set = UserSerializer(many=True)
 
     class Meta:
         model = Room

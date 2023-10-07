@@ -4,12 +4,6 @@ from main.fields import FriendToAddRelatedField, FriendToRemoveRelatedField
 from rest_framework import serializers
 
 
-class UserListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = get_user_model()
-        fields = ["id", "username", "avatar"]
-
-
 class FriendUpdateSerializer(serializers.ModelSerializer):
     friend_to_add = FriendToAddRelatedField(
         queryset=get_user_model().objects.all(),

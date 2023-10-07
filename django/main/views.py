@@ -1,13 +1,13 @@
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
-from django_filters.rest_framework import DjangoFilterBackend
 from djoser.serializers import UserSerializer
+from djoser.views import UserViewSet as BaseUserViewSet
 from rest_framework.filters import SearchFilter
 from rest_framework.generics import ListAPIView, UpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 
 from .paginations import FriendPagination
-from .serializers import FriendUpdateSerializer, UserListSerializer
+from .serializers import FriendUpdateSerializer
 
 
 class FriendListUpdateView(ListAPIView, UpdateAPIView):
@@ -53,10 +53,7 @@ class FriendRequestListView(ListAPIView, UpdateAPIView):
         return self.request.user
 
 
-class UserListView(ListAPIView):
-    queryset = get_user_model().objects.all()
-    model = get_user_model()
-    serializer_class = UserListSerializer
+class UserViewSet(BaseUserViewSet):
     pagination_class = FriendPagination
     filter_backends = [SearchFilter]
     search_fields = ["username", "email"]

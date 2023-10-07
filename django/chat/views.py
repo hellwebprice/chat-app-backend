@@ -43,9 +43,10 @@ class RoomRetrieveView(RetrieveUpdateAPIView):
 
 class MessageListCreateView(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
-    pagination_class = MessagePagination
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ["room"]
+    # pagination_class = MessagePagination
+    # filter_backends = [DjangoFilterBackend]
+    # filterset_fields = ["room"]
+    ordering = ["-created_at"]
 
     def get_serializer_class(self):
         if self.request.method == "GET":

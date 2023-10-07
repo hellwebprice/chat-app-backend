@@ -73,11 +73,7 @@ class RoomUpdateSerializer(RoomCreateSerializer):
         write_only=True,
         default=[],
     )
-    member_set = serializers.StringRelatedField(
-        many=True,
-        label=_("List of room member usernames"),
-        read_only=True,
-    )
+    member_set = UserSerializer(many=True, read_only=True)
 
     def update(self, instance, validated_data):
         member_set = set(instance.get_members())

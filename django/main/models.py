@@ -28,5 +28,8 @@ class User(AbstractUser):
             pk__in=self.friend_set.all()
         )
 
+    def is_friend_requested(self, user):
+        return self.friend_set.contains(user)
+
     def __str__(self):
         return self.username

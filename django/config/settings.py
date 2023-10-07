@@ -159,6 +159,9 @@ DJOSER = {
     "PERMISSIONS": {
         "user": ["rest_framework.permissions.IsAuthenticated"],
     },
+    "SERIALIZERS": {
+        "user": "main.serializers.UserSerializer",
+    },
     "HIDE_USERS": False,
 }
 
